@@ -37,7 +37,8 @@ public:
     int getServers();
     int getActiveServers();
     int getMaxServers();
-    double getUtilization(int serverId);
+    double getUtilization(int serverId); 
+    double getPowerConsumption(int serverId);
     double getBasicResponseTime();
     double getOptionalResponseTime();
     double getBasicThroughput();

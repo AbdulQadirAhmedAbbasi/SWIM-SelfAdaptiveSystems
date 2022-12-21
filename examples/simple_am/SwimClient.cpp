@@ -115,6 +115,11 @@ double SwimClient::getUtilization(int serverId) {
     cmd << "get_utilization server" << serverId << '\n';
     return probeDouble(cmd.str().c_str());
 }
+double SwimClient::getPowerConsumption(int serverId) {
+    ostringstream cmd;
+    cmd << "get_power_consumption server" << serverId << '\n';
+    return probeDouble(cmd.str().c_str());
+}
 
 double SwimClient::getBasicResponseTime() {
     return probeDouble("get_basic_rt\n");
@@ -161,6 +166,15 @@ double SwimClient::getTotalUtilization() {
         utilization += getUtilization(s);
     }
     return utilization;
+}
+
+double SwimClient::getTotalPowerConsumption() {
+    double powerConsumption = 0;
+    int activeServers = getActiveServers();
+    for (int s = 1; s <= activeServers; s++) {
+        powerConsumption += getPowerConsumption(s);
+    }
+    return powerConsumption;
 }
 
 double SwimClient::getAverageResponseTime() {

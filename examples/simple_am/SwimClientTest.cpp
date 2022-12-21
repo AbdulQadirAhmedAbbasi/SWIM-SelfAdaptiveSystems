@@ -32,6 +32,7 @@ int main() {
 
     for (int s = 1; s <= servers; s++) {
         cout << "Utilization server " << s << "=" << swim.getUtilization(s) << endl;
+        cout << "Power consumption server " << s << "=" << swim.getPowerConsumption(s) << endl;
     }
 
     if (servers == max) {
