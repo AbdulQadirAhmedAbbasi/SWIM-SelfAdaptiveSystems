@@ -58,6 +58,7 @@ class HAProxyProbe : public IProbe, omnetpp::cListener
     double getBasicThroughput();
     double getOptThroughput();
     double getUtilization(const std::string& serverName);
+    double getPowerConsumption(const std::string& serverName);
     double getArrivalRate();
 
     Observations getUpdatedObservations();

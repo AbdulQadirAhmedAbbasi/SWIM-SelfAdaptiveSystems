@@ -34,6 +34,7 @@ public:
     double getBasicThroughput();
     double getOptThroughput();
     double getUtilization(const std::string& serverName);
+    double getPowerConsumption(const std::string& serverName);
     double getArrivalRate();
 
     Observations getUpdatedObservations();
