@@ -60,7 +60,7 @@ void ServerPowerConsumption::idle() {
 double ServerPowerConsumption::getPowerConsumption() const {
     double u = busyTime.dbl();
     // main logic of power consumption
-    return u;
+    return 380 * u; //assume 380 is peak power
 }
 
 
