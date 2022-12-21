@@ -42,6 +42,7 @@ AdaptInterface::AdaptInterface() {
     commandHandlers["get_active_servers"] = std::bind(&AdaptInterface::cmdGetActiveServers, this, std::placeholders::_1);
     commandHandlers["get_max_servers"] = std::bind(&AdaptInterface::cmdGetMaxServers, this, std::placeholders::_1);
     commandHandlers["get_utilization"] = std::bind(&AdaptInterface::cmdGetUtilization, this, std::placeholders::_1);
+    commandHandlers["get_power_consumption"] = std::bind(&AdaptInterface::cmdGetPowerConsumption, this, std::placeholders::_1);
     commandHandlers["get_basic_rt"] = std::bind(&AdaptInterface::cmdGetBasicResponseTime, this, std::placeholders::_1);
     commandHandlers["get_basic_throughput"] = std::bind(&AdaptInterface::cmdGetBasicThroughput, this, std::placeholders::_1);
     commandHandlers["get_opt_rt"] = std::bind(&AdaptInterface::cmdGetOptResponseTime, this, std::placeholders::_1);
@@ -190,17 +191,17 @@ std::string AdaptInterface::cmdGetUtilization(const std::vector<std::string>& ar
     return reply.str();
 }
 
-std::string AdaptInterface::cmdGetPower(const std::vector<std::string>& args) {
+std::string AdaptInterface::cmdGetPowerConsumption(const std::vector<std::string>& args) {
     if (args.size() == 0) {
         return "error: missing Peak Power argument\n";
     }
 
     ostringstream reply;
-    auto utilization = pProbe->getUtilization(args[0]);
-    if (utilization < 0) {
+    auto powerConsumption = pProbe->getPowerConsumption(args[0]);
+    if (powerConsumption < 0) {
         reply << "error: server \'" << args[0] << "\' does no exist";
     } else {
-        reply << utilization;
+        reply << powerConsumption;
     }
     reply << '\n';
 
