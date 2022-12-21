@@ -157,6 +157,18 @@ double HAProxyProbe::getUtilization(const std::string& serverName) {
     return -1.0; // error: server not found
 }
 
+double HAProxyProbe::getPowerConsumption(const std::string& serverName) {
+    getUpdatedObservations();
+    // auto it = utilization.find(serverName);
+    // if (it != utilization.end()) {
+    //     return it->second;
+    // }
+
+    // add the power consumption logic here
+
+    return -1.0; // error: server not found
+}
+
 double HAProxyProbe::getArrivalRate() {
     double arrivalMean = getUpdatedEnvironment().getArrivalMean();
     double rate = 0;

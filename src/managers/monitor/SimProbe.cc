@@ -69,6 +69,15 @@ double SimProbe::getUtilization(const std::string& serverName) {
     return -1.0; // error: server not found
 }
 
+double SimProbe::getPowerConsumption(const std::string& serverName) {
+    auto it = utilization.find(serverName);
+    if (it != utilization.end()) {
+        return it->second.getPercentageAboveZero();
+    }
+
+    return -1.0; // error: server not found
+}
+
 double SimProbe::getArrivalRate() {
     return arrival.getRate();
 }
