@@ -77,3 +77,11 @@ void Configuration::printOn(std::ostream& os) const {
             << ", brownoutLevel=" << brownoutLevel << ", coldCache=" << coldCache << "]";
 }
 
+void Configuration::setPeakPowerConsumption(double peakPower) {
+    this->peakPower = peakPower;
+}
+
+double Configuration::getPeakPowerConsumption() {
+    return this->peakPower;
+}
+

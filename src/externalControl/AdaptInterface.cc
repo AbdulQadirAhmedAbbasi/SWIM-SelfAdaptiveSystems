@@ -47,6 +47,7 @@ AdaptInterface::AdaptInterface() {
     commandHandlers["get_opt_rt"] = std::bind(&AdaptInterface::cmdGetOptResponseTime, this, std::placeholders::_1);
     commandHandlers["get_opt_throughput"] = std::bind(&AdaptInterface::cmdGetOptThroughput, this, std::placeholders::_1);
     commandHandlers["get_arrival_rate"] = std::bind(&AdaptInterface::cmdGetArrivalRate, this, std::placeholders::_1);
+    commandHandlers["get_power"] = std::bind(&AdaptInterface::cmdGetPower, this, std::placeholders::_1);
 
     // dimmer, numServers, numActiveServers, utilization(total or indiv), response time and throughput for mandatory and optional, avg arrival rate
 }
@@ -175,6 +176,23 @@ std::string AdaptInterface::cmdGetMaxServers(const std::vector<std::string>& arg
 std::string AdaptInterface::cmdGetUtilization(const std::vector<std::string>& args) {
     if (args.size() == 0) {
         return "error: missing server argument\n";
+    }
+
+    ostringstream reply;
+    auto utilization = pProbe->getUtilization(args[0]);
+    if (utilization < 0) {
+        reply << "error: server \'" << args[0] << "\' does no exist";
+    } else {
+        reply << utilization;
+    }
+    reply << '\n';
+
+    return reply.str();
+}
+
+std::string AdaptInterface::cmdGetPower(const std::vector<std::string>& args) {
+    if (args.size() == 0) {
+        return "error: missing Peak Power argument\n";
     }
 
     ostringstream reply;
