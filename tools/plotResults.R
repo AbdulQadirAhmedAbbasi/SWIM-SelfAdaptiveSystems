@@ -249,7 +249,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
     ylab('dimmer') + expand_limits(y=c(0,1))
   pltResponse <- ggplot(md, aes(x=time,y=value)) + 
     geom_line(data=subset(md, variable=="responseTime")) + 
-    ylab('resp. time (s)') + 
+    ylab('resppp. time (s)') + 
     geom_hline(yintercept=RT_THRESHOLD_SEC, linetype="dashed", color="darkgrey")
   
   if (instantaneousUtility) {
@@ -260,7 +260,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   
   pltUtility <- ggplot(md, aes(x=time,y=cumsum(value))) + 
     geom_line(data=subset(md, variable=="utility")) + 
-    ylab('cum. utility')
+    ylab('cummm. utility')
   
   # this computes the avg of the amount of RT excess over the threshold over the whole run
   avgError <- sum(pmax(avgresponse$y - RT_THRESHOLD_SEC, 0)) / (length(avgresponse$y) * evaluationPeriod)
