@@ -48,7 +48,6 @@ AdaptInterface::AdaptInterface() {
     commandHandlers["get_opt_rt"] = std::bind(&AdaptInterface::cmdGetOptResponseTime, this, std::placeholders::_1);
     commandHandlers["get_opt_throughput"] = std::bind(&AdaptInterface::cmdGetOptThroughput, this, std::placeholders::_1);
     commandHandlers["get_arrival_rate"] = std::bind(&AdaptInterface::cmdGetArrivalRate, this, std::placeholders::_1);
-    commandHandlers["get_power"] = std::bind(&AdaptInterface::cmdGetPower, this, std::placeholders::_1);
 
     // dimmer, numServers, numActiveServers, utilization(total or indiv), response time and throughput for mandatory and optional, avg arrival rate
 }

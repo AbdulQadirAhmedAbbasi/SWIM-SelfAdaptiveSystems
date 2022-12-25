@@ -47,7 +47,7 @@ public:
      *
      * @return utilization as fraction (i.e., in [0,1])
      */
-    double getServerPowerConsumption() const;
+    double getPowerConsumption() const;
 };
 
 

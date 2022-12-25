@@ -78,10 +78,10 @@ void Configuration::printOn(std::ostream& os) const {
 }
 
 void Configuration::setPeakPowerConsumption(double peakPower) {
-    this->peakPower = peakPower;
+    this->peakPowerConsumption = peakPower;
 }
 
 double Configuration::getPeakPowerConsumption() const{
-    return this->peakPower;
+    return this->peakPowerConsumption;
 }
 

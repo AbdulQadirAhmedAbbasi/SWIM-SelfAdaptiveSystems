@@ -32,7 +32,6 @@ public:
     virtual double getUtilization(const std::string& serverName) = 0;
     virtual double getPowerConsumption(const std::string& serverName) = 0;
     virtual double getArrivalRate() = 0;
-    virtual double getPower() = 0;
 
     /**
      * Computes the statistics of observations
