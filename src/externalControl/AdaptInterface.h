@@ -56,7 +56,6 @@ protected:
     virtual std::string cmdGetOptResponseTime(const std::vector<std::string>& args);
     virtual std::string cmdGetOptThroughput(const std::vector<std::string>& args);
     virtual std::string cmdGetArrivalRate(const std::vector<std::string>& args);
-    virtual std::string cmdGetPower(const std::vector<std::string>& args);
 
 private:
     static const unsigned BUFFER_SIZE = 4000;

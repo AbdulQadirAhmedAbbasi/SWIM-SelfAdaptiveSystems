@@ -52,6 +52,7 @@ public:
 
     // helper methods
     double getTotalUtilization();
+    double getTotalPowerConsumption();
     double getAverageResponseTime();
 
     virtual ~SwimClient();

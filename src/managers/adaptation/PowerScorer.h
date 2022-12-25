@@ -12,8 +12,8 @@
  * Released under a BSD license, please see license.txt for full terms.
  * DM-0003883
  *******************************************************************************/
-#ifndef UTILITYSCORER_H_
-#define UTILITYSCORER_H_
+#ifndef POWERSCORER_H_
+#define POWERSCORER_H_
 #include <model/Configuration.h>
 #include <model/Environment.h>
 #include <model/Observations.h>
