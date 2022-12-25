@@ -43,6 +43,9 @@ public:
     int getServers() const;
     bool isColdCache() const;
     void setColdCache(bool coldCache);
+    void setPeakPowerConsumption(double peakPowerConsumption);
+    double getPeakPowerConsumption() const;
+
 
     virtual void printOn(std::ostream& os) const;
 
