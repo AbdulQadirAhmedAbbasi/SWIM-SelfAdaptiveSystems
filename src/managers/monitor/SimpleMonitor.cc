@@ -16,6 +16,7 @@
 
 #include <cmath>
 #include "managers/adaptation/UtilityScorer.h"
+#include "managers/adaptation/PowerScorer.h"
 #include "managers/ModulePriorities.h"
 #include "managers/execution/ExecutionManagerModBase.h"
 
@@ -37,6 +38,7 @@ void SimpleMonitor::initialize(int stage) {
         measuredInterarrivalAvg = registerSignal("measuredInterarrivalAvg");
         measuredInterarrivalStdDev = registerSignal("measuredInterarrivalStdDev");
         utilitySignal = registerSignal("utility");
+        powerSignal = registerSignal("power");
         brownoutFactorSignal = registerSignal("brownoutFactor");
 
         serverRemovedSignal = registerSignal(ExecutionManagerModBase::SIG_SERVER_REMOVED);
@@ -118,6 +120,11 @@ void SimpleMonitor::periodicHandler() {
             pModel->getConfiguration(), pModel->getEnvironment(), pModel->getObservations())
         * pModel->getEvaluationPeriod();
     emit(utilitySignal, periodUtility);
+
+    double periodPower = PowerScorer::getAccruedPowerConsumption(*pModel,
+            pModel->getConfiguration(), pModel->getEnvironment(), pModel->getObservations())
+        * pModel->getEvaluationPeriod();
+    emit(powerSignal, periodPower);
 }
 
 void SimpleMonitor::oversamplingHandler() {

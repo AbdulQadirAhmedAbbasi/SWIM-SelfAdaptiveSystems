@@ -30,6 +30,7 @@ public:
     virtual double getBasicThroughput() = 0;
     virtual double getOptThroughput() = 0;
     virtual double getUtilization(const std::string& serverName) = 0;
+    virtual double getPowerConsumption(const std::string& serverName) = 0;
     virtual double getArrivalRate() = 0;
 
     /**

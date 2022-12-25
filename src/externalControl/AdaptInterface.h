@@ -50,6 +50,7 @@ protected:
     virtual std::string cmdGetActiveServers(const std::vector<std::string>& args);
     virtual std::string cmdGetMaxServers(const std::vector<std::string>& args);
     virtual std::string cmdGetUtilization(const std::vector<std::string>& args);
+    virtual std::string cmdGetPowerConsumption(const std::vector<std::string>& args);
     virtual std::string cmdGetBasicResponseTime(const std::vector<std::string>& args);
     virtual std::string cmdGetBasicThroughput(const std::vector<std::string>& args);
     virtual std::string cmdGetOptResponseTime(const std::vector<std::string>& args);

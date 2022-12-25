@@ -23,6 +23,7 @@ class Configuration : public pladapt::Configuration {
     int bootRemain; // how many periods until we have one more server. If 0, no server is booting
     int brownoutLevel;
     bool coldCache; // true if the cache of the last added server is cold
+    double peakPowerConsumption; // peak power of server model
 public:
     Configuration();
     Configuration(int servers, int bootRemain, int brownoutLevel, bool coldCache);
@@ -43,6 +44,9 @@ public:
     int getServers() const;
     bool isColdCache() const;
     void setColdCache(bool coldCache);
+    void setPeakPowerConsumption(double peakPowerConsumption);
+    double getPeakPowerConsumption() const;
+
 
     virtual void printOn(std::ostream& os) const;
 
