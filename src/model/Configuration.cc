@@ -81,7 +81,7 @@ void Configuration::setPeakPowerConsumption(double peakPower) {
     this->peakPower = peakPower;
 }
 
-double Configuration::getPeakPowerConsumption() {
+double Configuration::getPeakPowerConsumption() const{
     return this->peakPower;
 }
 

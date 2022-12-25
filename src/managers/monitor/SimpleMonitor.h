@@ -45,6 +45,7 @@ class DLL_PUBLIC SimpleMonitor : public omnetpp::cSimpleModule, omnetpp::cListen
     omnetpp::simsignal_t measuredInterarrivalAvg;
     omnetpp::simsignal_t measuredInterarrivalStdDev;
     omnetpp::simsignal_t utilitySignal;
+    omnetpp::simsignal_t powerSignal;
     omnetpp::simsignal_t brownoutFactorSignal;
 
     Model* pModel;
