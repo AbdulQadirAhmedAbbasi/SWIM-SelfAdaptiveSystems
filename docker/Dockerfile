@@ -8,7 +8,7 @@ ENV BASE_DIR=${HOME}/seams-swim
 
 WORKDIR ${BASE_DIR}
 
-RUN git clone https://github.com/michiboo/swim.git -b powerConsumption
+RUN git clone https://github.com/michiboo/swim.git -b ram3
 
 RUN tar xzf swim/queueinglib.tgz
 
