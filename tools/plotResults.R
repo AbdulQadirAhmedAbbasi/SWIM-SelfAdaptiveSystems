@@ -168,6 +168,9 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   
   # find the mean for the response time in each interval
   avgresponse <- periodicAverage(responses, evaluationPeriod)
+
+  #power consumption
+  
   
   
   if (USE_COMPUTED_UTILITY) {
@@ -204,7 +207,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
     totalUtility <- scalars[scalars$scalarName=="utility:last", "scalarValue"]
   }
 
-  # melt data
+  powerConsumption <- readVector(vdb, "powerPeriod:vector")   # melt data
   tmp <-melt(avgArrivalRate, id=c("x"))
   tmp$variable='requestRate'
   md <- tmp
@@ -227,6 +230,10 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   
   tmp <-melt(utility, id=c("x"))
   tmp$variable='utility'
+  md <- rbind(md, tmp)
+
+  tmp <-melt(powerConsumption, id=c("x"))
+  tmp$variable='power'
   md <- rbind(md, tmp)
   
   names(md)[1] <- 'time'
@@ -261,6 +268,10 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   pltUtility <- ggplot(md, aes(x=time,y=cumsum(value))) + 
     geom_line(data=subset(md, variable=="utility")) + 
     ylab('cum. utility')
+
+  pltPowerConsumption <- ggplot(md, aes(x=time,y=cumsum(value))) + 
+    geom_line(data=subset(md, variable=="power")) + 
+    ylab('cum. powerConsump')
   
   # this computes the avg of the amount of RT excess over the threshold over the whole run
   avgError <- sum(pmax(avgresponse$y - RT_THRESHOLD_SEC, 0)) / (length(avgresponse$y) * evaluationPeriod)
@@ -278,11 +289,11 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
     plotList <- list(pltRequests, pltServers, pltDimmer, pltResponse)
     relHeights <- c(1,1,1,1.25)
   } else if(instantaneousUtility) {
-    plotList <- list(pltRequests, pltServers, pltDimmer, pltResponse, pltInstUtility, pltUtility)
-    relHeights <- c(1,1,1,1,1,1.15)
+    plotList <- list(pltRequests, pltServers, pltDimmer, pltResponse, pltInstUtility, pltUtility, pltPowerConsumption)
+    relHeights <- c(1,1,1,1,1,1.15,1.15)
   } else {
-    plotList <- list(pltRequests, pltServers, pltDimmer, pltResponse, pltUtility)
-    relHeights <- c(1,1,1,1,1.2)
+    plotList <- list(pltRequests, pltServers, pltDimmer, pltResponse, pltUtility, pltPowerConsumption)
+    relHeights <- c(1,1,1,1,1.2,1.2)
   }
   
   # apply uniform formatting
