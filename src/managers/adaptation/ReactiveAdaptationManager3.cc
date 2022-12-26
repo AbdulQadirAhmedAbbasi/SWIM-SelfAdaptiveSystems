@@ -42,10 +42,16 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
     double responseTime = pModel->getObservations().avgResponseTime;
     double responseTimeWeight = 0.8;
     double powerWeight = 0.2;
-    double powerCalculated = (powerConsumption - 70)/powerWeight;
+    double PC_THRESHOLD = 70;
+    if(pModel->getObservations().utilization > 50){
+        PC_THRESHOLD = 70;
+    } else {
+        PC_THRESHOLD = 50;
+    }
+    double powerCalculated = (powerConsumption - PC_THRESHOLD)/powerWeight;
     double rtCalculated = (responseTime - RT_THRESHOLD)/responseTimeWeight
-    double totalWeightCalculated = powerCalculated + rtCalculated)/1
-    if ( totalWeightCalculated > 70 ) {
+    double totalWeightCalculated = (powerCalculated + rtCalculated)/1
+    if ( totalWeightCalculated > 70) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {
             pMacroTactic->addTactic(new AddServerTactic);
@@ -53,7 +59,7 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
             dimmer = max(0.0, dimmer - dimmerStep);
             pMacroTactic->addTactic(new SetDimmerTactic(dimmer));
         }
-    } else if (totalWeightCalculated < 20) { // can we increase dimmer or remove servers?
+    } else if (totalWeightCalculated < 30) { // can we increase dimmer or remove servers?
 
         // only if there is more than one server of spare capacity
         if (spareUtilization > 1) {
