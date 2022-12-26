@@ -13,13 +13,13 @@
  * DM-0003883
  *******************************************************************************/
 
-#include "ReactiveAdaptationManager.h"
+#include "ReactiveAdaptationManager4.h"
 #include "managers/adaptation/UtilityScorer.h"
 #include "managers/execution/AllTactics.h"
 
 using namespace std;
 
-Define_Module(ReactiveAdaptationManager);
+Define_Module(ReactiveAdaptationManager4);
 
 /**
  * Reactive adaptation

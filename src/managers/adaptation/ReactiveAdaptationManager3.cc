@@ -13,13 +13,13 @@
  * DM-0003883
  *******************************************************************************/
 
-#include "ReactiveAdaptationManager.h"
+#include "ReactiveAdaptationManager3.h"
 #include "managers/adaptation/UtilityScorer.h"
 #include "managers/execution/AllTactics.h"
 
 using namespace std;
 
-Define_Module(ReactiveAdaptationManager);
+Define_Module(ReactiveAdaptationManager3);
 
 /**
  * Reactive adaptation
@@ -49,8 +49,8 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
         PC_THRESHOLD = 50;
     }
     double powerCalculated = (powerConsumption - PC_THRESHOLD)/powerWeight;
-    double rtCalculated = (responseTime - RT_THRESHOLD)/responseTimeWeight
-    double totalWeightCalculated = (powerCalculated + rtCalculated)/1
+    double rtCalculated = (responseTime - RT_THRESHOLD)/responseTimeWeight;
+    double totalWeightCalculated = (powerCalculated + rtCalculated)/1;
     if ( totalWeightCalculated > 70) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {
