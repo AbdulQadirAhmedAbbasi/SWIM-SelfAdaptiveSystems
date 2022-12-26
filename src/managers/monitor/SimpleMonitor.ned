@@ -34,6 +34,10 @@ simple SimpleMonitor
         @signal[utility](type="double");
         @statistic[utility](source="sum(utility)"; record=last);
         @statistic[utilityPeriod](source="utility"; record=vector);
+
+        @signal[power](type="double");
+        @statistic[power](source="sum(power)"; record=last);
+        @statistic[powerPeriod](source="power"; record=vector);
         
 		// inspection
  		@signal[measuredInterarrivalAvg](type="double");
