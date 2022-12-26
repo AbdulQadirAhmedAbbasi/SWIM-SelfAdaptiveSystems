@@ -26,6 +26,6 @@ double PowerScorer::getAccruedPowerConsumption(const Model& model, const Configu
 {
     
     double utilization = UtilityScorer::getAccruedUtility(model, configuration, environment, observations);    
-    return utilization * configuration.getPeakPowerConsumption();
+    return configuration.getPeakPowerConsumption() * utilization/100;
 }
 
