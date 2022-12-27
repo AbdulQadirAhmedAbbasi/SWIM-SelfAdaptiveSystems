@@ -30,3 +30,6 @@ Note that when executing the `plotResults()` function, it prints out metrics of 
 By default, the utility is computed using the utility function in the paper [Comparing model-based predictive approaches to self-adaptation: CobRA and PLA](https://works.bepress.com/gabriel_moreno/33/). Other utility functions can be defined and passed as the argument `utilityFc`. Keep in mind that these utility functions must operate on vectors.
 
 Also, there are good environments for R, such as [RStudio](https://www.rstudio.com/)
+
+
+For power consumption aware extension, there are couple of changes in *plotResults.R* file to retrieve the power consumption value from SQLITE and plot those data in the graphs.
