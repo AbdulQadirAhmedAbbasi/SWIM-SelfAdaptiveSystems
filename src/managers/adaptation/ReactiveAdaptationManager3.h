@@ -12,20 +12,19 @@
  * Released under a BSD license, please see license.txt for full terms.
  * DM-0003883
  *******************************************************************************/
-#include "UtilityScorer.h"
-#include "PowerScorer.h"
-#include <algorithm>
-#include <cfloat>
-#include <omnetpp.h>
 
+#ifndef __PLASASIM_REACTIVEADAPTATIONMANAGER_H_
+#define __PLASASIM_REACTIVEADAPTATIONMANAGER_H_
+
+#include "BaseAdaptationManager.h"
 
 /**
- * returns Power consumption;
+ * Simple reactive adaptation manager
  */
-double PowerScorer::getAccruedPowerConsumption(const Model& model, const Configuration& configuration, const Environment& environment, const Observations& observations)
+class ReactiveAdaptationManager3 : public BaseAdaptationManager
 {
-    
-    double utilization = UtilityScorer::getAccruedUtility(model, configuration, environment, observations);    
-    return configuration.getPeakPowerConsumption() * utilization/100;
-}
+  protected:
+    virtual Tactic* evaluate();
+};
 
+#endif
