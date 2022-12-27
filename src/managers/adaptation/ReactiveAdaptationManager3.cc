@@ -38,7 +38,7 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
     double dimmer = pModel->getDimmerFactor();
     double spareUtilization =  pModel->getConfiguration().getActiveServers() - pModel->getObservations().utilization;
     bool isServerBooting = pModel->getServers() > pModel->getActiveServers();
-    double powerConsumption = (pModel->getConfiguration().getPeakPowerConsumption() * pModel->getObservations().utilization) * 100;
+    double powerConsumption = (pModel->getConfiguration().getPeakPowerConsumption() * (pModel->getObservations().utilization) / 100);
     double responseTime = pModel->getObservations().avgResponseTime;
     double responseTimeWeight = 0.8;
     double powerWeight = 0.2;
