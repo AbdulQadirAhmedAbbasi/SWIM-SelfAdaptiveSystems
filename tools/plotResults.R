@@ -124,6 +124,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
                          periodGrid=FALSE, utilityFc=periodUtilitySEAMS2017A,
                          brief=FALSE) {
   USE_COMPUTED_UTILITY <- TRUE
+  PEAK_PC <- 368.6
   require(reshape2)
   require(ggplot2)
   require(cowplot)
@@ -202,9 +203,11 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
                                                    evaluationPeriod, RT_THRESHOLD_SEC,
                                                    avgresponse$y, serversMean$y)))
     totalUtility <- sum(utility$y)
+    powerConsumption <- PEAK_PC * utility
   } else {
     utility <- readVector(vdb, "utilityPeriod:vector")
     totalUtility <- scalars[scalars$scalarName=="utility:last", "scalarValue"]
+    powerConsumption <- PEAK_PC * utility
   }
 
   powerConsumption <- readVector(vdb, "powerPeriod:vector")   # melt data
