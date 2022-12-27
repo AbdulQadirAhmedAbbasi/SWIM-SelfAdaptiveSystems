@@ -40,6 +40,7 @@ Tactic* ReactiveAdaptationManager4::evaluate() {
     bool isServerBooting = pModel->getServers() > pModel->getActiveServers();
     double powerConsumption = pModel->getConfiguration().getPeakPowerConsumption() * (pModel->getObservations().utilization/ 100);
     double PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
+    double MIN_PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 30/100;
     if ( powerConsumption > PC_THRESHOLD) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {
@@ -48,7 +49,7 @@ Tactic* ReactiveAdaptationManager4::evaluate() {
             dimmer = max(0.0, dimmer - dimmerStep);
             pMacroTactic->addTactic(new SetDimmerTactic(dimmer));
         }
-    } else if (powerConsumption < 30) { // can we increase dimmer or remove servers?
+    } else if (powerConsumption < MIN_PC_THRESHOLD) { // can we increase dimmer or remove servers?
             if (dimmer < 1.0) {
                 dimmer = min(1.0, dimmer + dimmerStep);
                 pMacroTactic->addTactic(new SetDimmerTactic(dimmer));

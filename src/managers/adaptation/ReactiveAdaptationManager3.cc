@@ -40,18 +40,14 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
     bool isServerBooting = pModel->getServers() > pModel->getActiveServers();
     double powerConsumption = (pModel->getConfiguration().getPeakPowerConsumption() * (pModel->getObservations().utilization) / 100);
     double responseTime = pModel->getObservations().avgResponseTime;
-    double responseTimeWeight = 0.8;
-    double powerWeight = 0.2;
     double PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
+    double MIN_PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 30/100;
     if(pModel->getObservations().utilization > 50){
         pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
     } else {
         pModel->getConfiguration().getPeakPowerConsumption() * 50/100;
     }
-    double powerCalculated = ((powerConsumption - PC_THRESHOLD)/pModel->getConfiguration().getPeakPowerConsumption() * 100) *powerWeight;
-    double rtCalculated = ((responseTime - RT_THRESHOLD)/RT_THRESHOLD) *responseTimeWeight;
-    double totalWeightCalculated = (powerCalculated + rtCalculated);
-    if ( totalWeightCalculated > 70) {
+    if (powerConsumption > PC_THRESHOLD || responseTime > RT_THRESHOLD) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {
             pMacroTactic->addTactic(new AddServerTactic);
@@ -59,7 +55,7 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
             dimmer = max(0.0, dimmer - dimmerStep);
             pMacroTactic->addTactic(new SetDimmerTactic(dimmer));
         }
-    } else if (totalWeightCalculated < 30) { // can we increase dimmer or remove servers?
+    } else if (powerConsumption < MIN_PC_THRESHOLD || responseTime < RT_THRESHOLD) { // can we increase dimmer or remove servers?
 
         // only if there is more than one server of spare capacity
         if (spareUtilization > 1) {
