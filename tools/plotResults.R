@@ -170,7 +170,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   # find the mean for the response time in each interval
   avgresponse <- periodicAverage(responses, evaluationPeriod)
 
-  #power consumption
+  
   
   
   
@@ -203,14 +203,14 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
                                                    evaluationPeriod, RT_THRESHOLD_SEC,
                                                    avgresponse$y, serversMean$y)))
     totalUtility <- sum(utility$y)
-    powerConsumption <- PEAK_PC * (utility/100)
+    powerConsumption <- PEAK_PC * (utility/100) #power consumption
   } else {
     utility <- readVector(vdb, "utilityPeriod:vector")
     totalUtility <- scalars[scalars$scalarName=="utility:last", "scalarValue"]
-    powerConsumption <- PEAK_PC * (utility/100)
+    powerConsumption <- PEAK_PC * (utility/100) #power consumption
   }
 
-  powerConsumption <- readVector(vdb, "powerPeriod:vector")   # melt data
+  #powerConsumption <- readVector(vdb, "powerPeriod:vector")   # #power consumption
   tmp <-melt(avgArrivalRate, id=c("x"))
   tmp$variable='requestRate'
   md <- tmp
