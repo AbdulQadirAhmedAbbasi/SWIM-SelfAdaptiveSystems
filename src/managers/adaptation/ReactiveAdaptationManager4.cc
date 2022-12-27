@@ -39,7 +39,7 @@ Tactic* ReactiveAdaptationManager4::evaluate() {
     double spareUtilization =  pModel->getConfiguration().getActiveServers() - pModel->getObservations().utilization;
     bool isServerBooting = pModel->getServers() > pModel->getActiveServers();
     double powerConsumption = pModel->getConfiguration().getPeakPowerConsumption() * (pModel->getObservations().utilization/ 100);
-    double PC_THRESHOLD = 70;
+    double PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
     if ( powerConsumption > PC_THRESHOLD) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {

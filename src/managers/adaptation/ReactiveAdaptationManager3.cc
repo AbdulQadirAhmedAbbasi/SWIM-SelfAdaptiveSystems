@@ -42,15 +42,15 @@ Tactic* ReactiveAdaptationManager3::evaluate() {
     double responseTime = pModel->getObservations().avgResponseTime;
     double responseTimeWeight = 0.8;
     double powerWeight = 0.2;
-    double PC_THRESHOLD = 70;
+    double PC_THRESHOLD = pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
     if(pModel->getObservations().utilization > 50){
-        PC_THRESHOLD = 70;
+        pModel->getConfiguration().getPeakPowerConsumption() * 70/100;
     } else {
-        PC_THRESHOLD = 50;
+        pModel->getConfiguration().getPeakPowerConsumption() * 50/100;
     }
-    double powerCalculated = (powerConsumption - PC_THRESHOLD)/powerWeight;
-    double rtCalculated = (responseTime - RT_THRESHOLD)/responseTimeWeight;
-    double totalWeightCalculated = (powerCalculated + rtCalculated)/1;
+    double powerCalculated = ((powerConsumption - PC_THRESHOLD)/pModel->getConfiguration().getPeakPowerConsumption() * 100) *powerWeight;
+    double rtCalculated = ((responseTime - RT_THRESHOLD)/RT_THRESHOLD) *responseTimeWeight;
+    double totalWeightCalculated = (powerCalculated + rtCalculated);
     if ( totalWeightCalculated > 70) {
         if (!isServerBooting
                 && pModel->getServers() < pModel->getMaxServers()) {
