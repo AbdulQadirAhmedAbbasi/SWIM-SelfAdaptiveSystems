@@ -203,11 +203,11 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
                                                    evaluationPeriod, RT_THRESHOLD_SEC,
                                                    avgresponse$y, serversMean$y)))
     totalUtility <- sum(utility$y)
-    powerConsumption <- PEAK_PC * utility
+    powerConsumption <- PEAK_PC * (utility/100)
   } else {
     utility <- readVector(vdb, "utilityPeriod:vector")
     totalUtility <- scalars[scalars$scalarName=="utility:last", "scalarValue"]
-    powerConsumption <- PEAK_PC * utility
+    powerConsumption <- PEAK_PC * (utility/100)
   }
 
   powerConsumption <- readVector(vdb, "powerPeriod:vector")   # melt data
