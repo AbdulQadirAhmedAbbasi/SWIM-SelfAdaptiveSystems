@@ -208,7 +208,7 @@ plotResults <- function(config, folder="SWIM", run, saveAs=NULL, instantaneousUt
   }
 
   #getting power consumption value from sqlite
-   <- readVector(vdb, "powerPeriod:vector")   
+  powerConsumption <- readVector(vdb, "powerPeriod:vector")   
   
   tmp <-melt(avgArrivalRate, id=c("x"))
   tmp$variable='requestRate'
