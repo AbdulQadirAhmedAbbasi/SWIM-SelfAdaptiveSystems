@@ -24,6 +24,7 @@ class Configuration : public pladapt::Configuration {
     int brownoutLevel;
     bool coldCache; // true if the cache of the last added server is cold
     double peakPowerConsumption; // peak power of server model
+    int serverWeight; // associated weigth for each server (identical at the moment)
 public:
     Configuration();
     Configuration(int servers, int bootRemain, int brownoutLevel, bool coldCache);
@@ -46,6 +47,8 @@ public:
     void setColdCache(bool coldCache);
     void setPeakPowerConsumption(double peakPowerConsumption);
     double getPeakPowerConsumption() const;
+    void setServerWeight(int serverWeight);
+    int getServerWeight() const;
 
 
     virtual void printOn(std::ostream& os) const;

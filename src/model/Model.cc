@@ -213,6 +213,7 @@ bool Model::isServerBooting() const {
 Configuration Model::getConfiguration() {
     Configuration configuration;
     configuration.setPeakPowerConsumption(368.6);
+    configuration.setServerWeight();
     configuration.setBrownOutLevel(brownoutFactorToLevel(brownoutFactor));
     configuration.setActiveServers(activeServers);
     if (events.empty()) {

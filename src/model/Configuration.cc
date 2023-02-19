@@ -85,3 +85,11 @@ double Configuration::getPeakPowerConsumption() const{
     return this->peakPowerConsumption;
 }
 
+void Configuration::setServerWeight(int ) {
+    this->serverWeight = peakPower;
+}
+
+int Configuration::getServerWeight() const{
+    return this->serverWeight;
+}
+
