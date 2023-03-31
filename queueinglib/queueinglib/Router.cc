@@ -39,8 +39,7 @@ void Router::initialize()
     //Added by Abdul
     maxWeight = 3;         //maximum weight that can be assigned to any server
     minWeight = 1;         //minimum weight that can be assigned to any server
-    requestCounter = 0;    //currently assigned total requests to the server according to weight 
-    serverWeights [3] = {3, 2, 1}; //array of manually assigned server weights
+    requestCounter = 0;    //currently assigned total requests to the server according to weight
     wrrCounter = 0;        //current server Index 
 }
 

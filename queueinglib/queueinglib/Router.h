@@ -38,7 +38,7 @@ class QUEUEING_API Router : public cSimpleModule
         int maxWeight;         //maximum weight that can be assigned to any server
         int minWeight;         //minimum weight that can be assigned to any server
         int requestCounter;    //currently assigned total requests to the server according to weight 
-        int serverWeights [3]; //array of manual server weights
+        int serverWeights [3] = {3, 2, 1}; //array of manual server weights
         int wrrCounter;    //current server Index
         //int outGateIndex;    //server to assign the request according to associated weights 
         //int gateSize;        //total servers
